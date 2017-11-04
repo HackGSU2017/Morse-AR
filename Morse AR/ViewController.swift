@@ -11,6 +11,8 @@ import SceneKit
 import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
+    
+    let openCVWrapper = OpenCVWrapper()
 
     @IBOutlet var sceneView: ARSCNView!
     
@@ -28,6 +30,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Set the scene to the view
         sceneView.scene = scene
+        
+        
         
     }
     
