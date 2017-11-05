@@ -17,14 +17,36 @@ using namespace cv;
 @implementation OpenCVWrapper
 - (NSArray*)processImage:(UIImage*)image {
     cv::Mat jpegImage = [self cvMatFromUIImage:image];
-
-    cv::pyrMeanShiftFiltering(jpegImage, jpegImage, 31, 91);
-    float thresh = cv::threshold(jpegImage, jpegImage, 127, 255, CV_THRESH_BINARY);
     
-    NSMutableArray *contours = [[NSMutableArray alloc] init];
-    cv::findContours(jpegImage, jpegImage, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE);
+    cv::GaussianBlur(jpegImage, jpegImage, cv::Size(5, 5), 5);
+    double thresh = cv::threshold(jpegImage, jpegImage, 200, 250, CV_THRESH_BINARY);
+    UIImage *uiimage = [self UIImageFromCVMat:jpegImage];
 
-    return contours;
+    cv::Mat cannyOutput;
+    std::vector<std::vector<cv::Point> > contours;
+    std::vector<Vec4i> hierarchy;
+    
+    cv::Canny(jpegImage, cannyOutput, thresh, thresh * 2);
+    //NSMutableArray *threshArray = [[NSMutableArray alloc] init];
+    cv::findContours(cannyOutput, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_NONE);
+    
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    return array;
+}
+
+- (string)detect:(std::vector<cv::Point>)c {
+    double peri = cv::arcLength(c, true);
+    array<std::vector<cv::Point>, sizeof(c)> approxCurve;
+    double epsilon = 0.04 * peri;
+    //cv::approxPolyDP(c, approxCurve, epsilon, true);
+    //cv::cornerHarris(c, approxCurve, int blockSize, int ksize, double k)
+    
+    if (sizeof(approxCurve) == 4) {
+        return "dash";
+    } else if (sizeof(approxCurve) > 15) {
+        return "dot";
+    }
+    return "unidentified";
 }
 
 - (cv::Mat)cvMatFromUIImage:(UIImage*)image{
@@ -47,11 +69,45 @@ using namespace cv;
     return cvMat;
 }
 
+-(UIImage *)UIImageFromCVMat:(cv::Mat)cvMat
+{
+    NSData *data = [NSData dataWithBytes:cvMat.data length:cvMat.elemSize()*cvMat.total()];
+    CGColorSpaceRef colorSpace;
+    
+    if (cvMat.elemSize() == 1) {
+        colorSpace = CGColorSpaceCreateDeviceGray();
+    } else {
+        colorSpace = CGColorSpaceCreateDeviceRGB();
+    }
+    
+    CGDataProviderRef provider = CGDataProviderCreateWithCFData((__bridge CFDataRef)data);
+    
+    // Creating CGImage from cv::Mat
+    CGImageRef imageRef = CGImageCreate(cvMat.cols,                                 //width
+                                        cvMat.rows,                                 //height
+                                        8,                                          //bits per component
+                                        8 * cvMat.elemSize(),                       //bits per pixel
+                                        cvMat.step[0],                            //bytesPerRow
+                                        colorSpace,                                 //colorspace
+                                        kCGImageAlphaNone|kCGBitmapByteOrderDefault,// bitmap info
+                                        provider,                                   //CGDataProviderRef
+                                        NULL,                                       //decode
+                                        false,                                      //should interpolate
+                                        kCGRenderingIntentDefault                   //intent
+                                        );
+    
+    
+    // Getting UIImage from CGImage
+    UIImage *finalImage = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    CGDataProviderRelease(provider);
+    CGColorSpaceRelease(colorSpace);
+    
+    return finalImage;
+}
+
 
 
 @end
 
 
-
-
-enum class MorseShape {dot, dash};

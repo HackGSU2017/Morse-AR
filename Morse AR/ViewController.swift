@@ -56,9 +56,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         guard let cgImage2 = cgImage else { return }
         let uiImage = UIImage(cgImage: cgImage2)
         
-        //openCVWrapper.processImage(uiImage)
+        openCVWrapper.processImage(uiImage)
         
-        //uiImage.imageOrientation.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi/2)
         imageView.image = uiImage
         imageView.isHidden = false
         
