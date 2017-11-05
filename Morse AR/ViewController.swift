@@ -57,12 +57,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         //openCVWrapper.processImage(uiImage)
         
+        let morse = [MorseChar(elements: "-.-."), MorseChar(elements: "---"), MorseChar(elements: "-.."), MorseChar(elements: ".")]
+        let translation = morse.translate()
+        
         imageView.image = uiImage
         imageView.isHidden = false
         
         translationViewController.modalPresentationStyle = .overCurrentContext
         self.present(translationViewController, animated: false, completion: nil)
-        translationViewController.setTranslationText(text: "test translation text")
+        translationViewController.setTranslationText(text: translation)
 
     }
 }

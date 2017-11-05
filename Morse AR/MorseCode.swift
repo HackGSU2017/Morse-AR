@@ -123,6 +123,16 @@ class MorseChar: NSObject {
     }
 }
 
+extension Array where Element:MorseChar {
+    func translate() -> String {
+        var translation = ""
+        for element in self  {
+            translation.append(element.letter)
+        }
+        return translation
+    }
+}
+
 
 
 
