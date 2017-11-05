@@ -13,25 +13,21 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate {
     
     let openCVWrapper = OpenCVWrapper()
-
+    let translationViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TranslationViewController") as! TranslationViewController
+    
     @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set the view's delegate
         sceneView.delegate = self
+        sceneView.showsStatistics = false
         
-        // Show statistics such as fps and timing information
-        sceneView.showsStatistics = true
-        
-        // Create a new scene/Users/Nate/GitHub/Morse AR/Morse AR/Morse AR-Bridging-Header.h
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        
-        // Set the scene to the view
-        sceneView.scene = scene
-        
-        
+        imageView.isHidden = true
+        translationViewController.clearImageView = {
+            self.imageView.isHidden = true
+        }
         
         
     }
@@ -55,21 +51,53 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         guard let pixelBuffer = sceneView.session.currentFrame?.capturedImage else { return }
         
         let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
-        let uiImage = UIImage(ciImage: ciImage)
+        let context = CIContext()
+        let cgImage = context.createCGImage(ciImage, from: ciImage.extent)?.rotate()
+        guard let cgImage2 = cgImage else { return }
+        let uiImage = UIImage(cgImage: cgImage2)
         
         //openCVWrapper.processImage(uiImage)
         
-        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TranslationViewController") as! TranslationViewController
-        viewController.modalPresentationStyle = .overCurrentContext
-        self.present(viewController, animated: false, completion: nil)
-        viewController.setTranslationText(text: "test translation text")
+        //uiImage.imageOrientation.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi/2)
+        imageView.image = uiImage
+        imageView.isHidden = false
         
-        
+        translationViewController.modalPresentationStyle = .overCurrentContext
+        self.present(translationViewController, animated: false, completion: nil)
+        translationViewController.setTranslationText(text: "test translation text")
 
     }
-    
 
     
 }
+
+
+
+extension CGImage {
+    func rotate() -> CGImage {
+        let rotatedSize = CGSize(width: self.height, height: self.width)
+        // Create the bitmap context
+        UIGraphicsBeginImageContext(rotatedSize)
+        let bitmap = UIGraphicsGetCurrentContext()!
+        
+        // Move the origin to the middle of the image so we will rotate and scale around the center.
+        bitmap.translateBy(x: rotatedSize.width / 2.0, y: rotatedSize.height / 2.0)
+        
+        //   // Rotate the image context
+        bitmap.rotate(by: CGFloat.pi / 2)
+        
+        // Now, draw the rotated/scaled image into the context
+        bitmap.scaleBy(x: 1.0, y: -1.0)
+        bitmap.draw(self, in: CGRect(x: -width / 2, y: -height / 2, width: width, height: height))
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()?.cgImage
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+    }
+}
+
+
+
 
 

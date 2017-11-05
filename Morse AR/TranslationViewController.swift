@@ -13,6 +13,8 @@ class TranslationViewController: UIViewController {
     @IBOutlet weak var translationView: UIView!
     @IBOutlet weak var textView: UITextView!
     
+    var clearImageView: (() -> Void)!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -56,6 +58,7 @@ class TranslationViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        self.clearImageView()
         performDismissalAnimation()
     }
     
