@@ -29,7 +29,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             self.imageView.isHidden = true
         }
         
-        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -52,11 +51,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
         let context = CIContext()
-        let cgImage = context.createCGImage(ciImage, from: ciImage.extent)?.rotate()
+        let cgImage = context.createCGImage(ciImage, from: ciImage.extent)
         guard let cgImage2 = cgImage else { return }
         let uiImage = UIImage(cgImage: cgImage2)
         
-        openCVWrapper.processImage(uiImage)
+        //openCVWrapper.processImage(uiImage)
         
         imageView.image = uiImage
         imageView.isHidden = false
@@ -66,8 +65,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         translationViewController.setTranslationText(text: "test translation text")
 
     }
-
-    
 }
 
 
