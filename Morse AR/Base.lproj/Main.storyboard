@@ -8,6 +8,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Helvetica.ttc">
+            <string>Helvetica-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
@@ -17,30 +22,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oJm-xb-Xfn">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                            </arscnView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hf3-MB-v7J">
-                                <rect key="frame" x="164" y="617" width="46" height="30"/>
+                            <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oJm-xb-Xfn">
+                                <rect key="frame" x="0.0" y="10" width="375" height="647"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                            </arscnView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Taw-YP-m1l">
+                                <rect key="frame" x="0.0" y="593" width="375" height="74"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="text" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="AL8-ZJ-GwS">
+                                        <rect key="frame" x="8" y="8" width="359" height="58"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.2334430520304569" green="0.2334430520304569" blue="0.2334430520304569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hf3-MB-v7J">
+                                <rect key="frame" x="162" y="535" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="icons8-add"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="oJm-xb-Xfn" firstAttribute="top" secondItem="1kQ-f9-TYc" secondAttribute="top" id="Z5p-Yi-5dc"/>
-                            <constraint firstItem="1kQ-f9-TYc" firstAttribute="trailing" secondItem="oJm-xb-Xfn" secondAttribute="trailing" id="c5Y-nz-wBG"/>
-                            <constraint firstItem="oJm-xb-Xfn" firstAttribute="leading" secondItem="1kQ-f9-TYc" secondAttribute="leading" id="jQC-hK-f0Y"/>
-                            <constraint firstItem="1kQ-f9-TYc" firstAttribute="bottom" secondItem="oJm-xb-Xfn" secondAttribute="bottom" id="m3F-J5-p7Q"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="1kQ-f9-TYc"/>
                     </view>
                     <connections>
+                        <outlet property="ImageView" destination="GDw-TY-6Sv" id="Xzd-6T-sU6"/>
+                        <outlet property="MorseCapture" destination="Hf3-MB-v7J" id="o9s-hh-YR5"/>
                         <outlet property="sceneView" destination="oJm-xb-Xfn" id="CM3-EX-qfg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="112.8" y="32.833583208395808"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icons8-add" width="50" height="50"/>
+    </resources>
 </document>
