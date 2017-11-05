@@ -15,6 +15,7 @@
 		4379ECF61FAD822E00DED777 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4379ECF51FAD822E00DED777 /* Assets.xcassets */; };
 		4379ECF91FAD822E00DED777 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4379ECF71FAD822E00DED777 /* LaunchScreen.storyboard */; };
 		4379ED011FAD876900DED777 /* MorseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4379ED001FAD876900DED777 /* MorseCode.swift */; };
+		43854E831FAEB04F0070DDF2 /* TranslationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43854E821FAEB04F0070DDF2 /* TranslationViewController.swift */; };
 		43CDD4851FAE2047005A7A90 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43CDD4841FAE2047005A7A90 /* opencv2.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +32,7 @@
 		4379ECF81FAD822E00DED777 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4379ECFA1FAD822E00DED777 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4379ED001FAD876900DED777 /* MorseCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorseCode.swift; sourceTree = "<group>"; };
+		43854E821FAEB04F0070DDF2 /* TranslationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationViewController.swift; sourceTree = "<group>"; };
 		43CDD47B1FAE1978005A7A90 /* Morse AR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Morse AR-Bridging-Header.h"; sourceTree = "<group>"; };
 		43CDD4841FAE2047005A7A90 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../../../../Library/Frameworks/opencv2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,6 +75,7 @@
 				430586301FAE28AF005C9B8A /* OpenCVWrapper.h */,
 				430586311FAE28AF005C9B8A /* OpenCVWrapper.mm */,
 				4379ECF01FAD822E00DED777 /* ViewController.swift */,
+				43854E821FAEB04F0070DDF2 /* TranslationViewController.swift */,
 				4379ED001FAD876900DED777 /* MorseCode.swift */,
 				4379ECF21FAD822E00DED777 /* Main.storyboard */,
 				4379ECF51FAD822E00DED777 /* Assets.xcassets */,
@@ -169,6 +172,7 @@
 				4379ECF11FAD822E00DED777 /* ViewController.swift in Sources */,
 				4379ECED1FAD822E00DED777 /* AppDelegate.swift in Sources */,
 				4379ED011FAD876900DED777 /* MorseCode.swift in Sources */,
+				43854E831FAEB04F0070DDF2 /* TranslationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

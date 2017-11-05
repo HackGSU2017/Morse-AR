@@ -33,6 +33,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         
         
+        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -49,16 +50,26 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.run(configuration)
     }
 
-    
-    func buttonPressed() {
+    @IBAction func translateButtonPressed(_ sender: Any) {
+        
         guard let pixelBuffer = sceneView.session.currentFrame?.capturedImage else { return }
         
         let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
         let uiImage = UIImage(ciImage: ciImage)
         
-        openCVWrapper.processImage(uiImage)
-    }
+        //openCVWrapper.processImage(uiImage)
+        
+        let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TranslationViewController") as! TranslationViewController
+        viewController.modalPresentationStyle = .overCurrentContext
+        self.present(viewController, animated: false, completion: nil)
+        viewController.setTranslationText(text: "test translation text")
+        
+        
 
+    }
+    
+
+    
 }
 
 
