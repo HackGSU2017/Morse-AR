@@ -8,6 +8,11 @@
 
 import Foundation
 
+enum MorseShape {
+    case dot
+    case dash
+}
+
 class MorseChar: NSObject {
     
     public var elements: String

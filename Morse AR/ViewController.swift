@@ -25,12 +25,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
         
-        // Create a new scene
+        // Create a new scene/Users/Nate/GitHub/Morse AR/Morse AR/Morse AR-Bridging-Header.h
         let scene = SCNScene(named: "art.scnassets/ship.scn")!
         
         // Set the scene to the view
         sceneView.scene = scene
         
+        let image = UIImage()
         
         
     }

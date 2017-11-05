@@ -21,6 +21,7 @@
 /* Begin PBXFileReference section */
 		430586301FAE28AF005C9B8A /* OpenCVWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenCVWrapper.h; sourceTree = "<group>"; };
 		430586311FAE28AF005C9B8A /* OpenCVWrapper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OpenCVWrapper.mm; sourceTree = "<group>"; };
+		430586361FAE834E005C9B8A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		4379ECE91FAD822E00DED777 /* Morse AR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Morse AR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4379ECEC1FAD822E00DED777 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4379ECEE1FAD822E00DED777 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -84,6 +85,7 @@
 		43CDD47E1FAE1C20005A7A90 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				430586361FAE834E005C9B8A /* AssetsLibrary.framework */,
 				43CDD4841FAE2047005A7A90 /* opencv2.framework */,
 			);
 			name = Frameworks;
