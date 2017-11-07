@@ -15,7 +15,7 @@
 		4379ECF91FAD822E00DED777 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4379ECF71FAD822E00DED777 /* LaunchScreen.storyboard */; };
 		4379ED011FAD876900DED777 /* MorseCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4379ED001FAD876900DED777 /* MorseCode.swift */; };
 		43854E831FAEB04F0070DDF2 /* TranslationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43854E821FAEB04F0070DDF2 /* TranslationViewController.swift */; };
-		43CDD4851FAE2047005A7A90 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43CDD4841FAE2047005A7A90 /* opencv2.framework */; };
+		43F5ACAF1FAF10840070C5A0 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F5ACAE1FAF10840070C5A0 /* opencv2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +32,7 @@
 		4379ED001FAD876900DED777 /* MorseCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorseCode.swift; sourceTree = "<group>"; };
 		43854E821FAEB04F0070DDF2 /* TranslationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationViewController.swift; sourceTree = "<group>"; };
 		43CDD47B1FAE1978005A7A90 /* Morse AR-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Morse AR-Bridging-Header.h"; sourceTree = "<group>"; };
-		43CDD4841FAE2047005A7A90 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../../../../Library/Frameworks/opencv2.framework; sourceTree = "<group>"; };
+		43F5ACAE1FAF10840070C5A0 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = opencv2.framework; path = ../../Downloads/opencv2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,7 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43CDD4851FAE2047005A7A90 /* opencv2.framework in Frameworks */,
+				43F5ACAF1FAF10840070C5A0 /* opencv2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,8 +85,8 @@
 		43CDD47E1FAE1C20005A7A90 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				43F5ACAE1FAF10840070C5A0 /* opencv2.framework */,
 				430586361FAE834E005C9B8A /* AssetsLibrary.framework */,
-				43CDD4841FAE2047005A7A90 /* opencv2.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

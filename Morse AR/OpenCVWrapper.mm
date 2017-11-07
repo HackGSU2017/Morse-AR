@@ -10,6 +10,7 @@
 #import <iostream>
 #import <opencv2/imgproc.hpp>
 #import <opencv2/core.hpp>
+#import <opencv2/shape/shape_distance.hpp>
 
 using namespace std;
 using namespace cv;
@@ -21,32 +22,42 @@ using namespace cv;
     cv::GaussianBlur(jpegImage, jpegImage, cv::Size(5, 5), 5);
     double thresh = cv::threshold(jpegImage, jpegImage, 200, 250, CV_THRESH_BINARY);
     UIImage *uiimage = [self UIImageFromCVMat:jpegImage];
-
+    
     cv::Mat cannyOutput;
     std::vector<std::vector<cv::Point> > contours;
     std::vector<Vec4i> hierarchy;
     
     cv::Canny(jpegImage, cannyOutput, thresh, thresh * 2);
-    //NSMutableArray *threshArray = [[NSMutableArray alloc] init];
     cv::findContours(cannyOutput, contours, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_NONE);
     
-    NSMutableArray *array = [[NSMutableArray alloc] init];
+
+    for (int i = 0; i < sizeof(contours); i++) {
+        [self detectShapes:cv::Mat(contours[i])];
+    }
+    
+    NSMutableArray *array = [[NSArray alloc] init];
     return array;
 }
 
-- (string)detect:(std::vector<cv::Point>)c {
+
+
+- (string)detectShapes:(cv::Mat)c {
     double peri = cv::arcLength(c, true);
-    array<std::vector<cv::Point>, sizeof(c)> approxCurve;
     double epsilon = 0.04 * peri;
-    //cv::approxPolyDP(c, approxCurve, epsilon, true);
-    //cv::cornerHarris(c, approxCurve, int blockSize, int ksize, double k)
+
+    cv::Mat approxCurve;
+    cv::approxPolyDP(c, approxCurve, epsilon, true);
     
     if (sizeof(approxCurve) == 4) {
+        printf("dash");
         return "dash";
     } else if (sizeof(approxCurve) > 15) {
+        printf("dot");
         return "dot";
+    } else {
+        printf("unidentified");
+        return "unidentified";
     }
-    return "unidentified";
 }
 
 - (cv::Mat)cvMatFromUIImage:(UIImage*)image{
@@ -104,6 +115,15 @@ using namespace cv;
     CGColorSpaceRelease(colorSpace);
     
     return finalImage;
+}
+
+int printf(const char * __restrict format, ...)
+{
+    va_list args;
+    va_start(args,format);
+    NSLogv([NSString stringWithUTF8String:format], args) ;
+    va_end(args);
+    return 1;
 }
 
 
